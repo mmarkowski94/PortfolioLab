@@ -9,25 +9,30 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InstitutionServiceImpl implements InstitutionService {
 
-    private  final InstitutionRepository institutionRepository;
+    private final InstitutionRepository institutionRepository;
 
     @Override
-    public List<Institution> getAllInstitution() {
+    public List<Institution> getAll() {
         return institutionRepository.findAll();
     }
 
     @Override
-    public void saveInstitution(Institution institution) {
-
+    public Institution findById(Long id) {
+        return institutionRepository.getById(id);
     }
 
     @Override
-    public void deleteInstitution(Long id) {
-
+    public void save(Institution institution) {
+        institutionRepository.save(institution);
     }
 
     @Override
-    public void updateInstitution(Institution institution) {
+    public void delete(Long id) {
+        institutionRepository.deleteById(id);
+    }
 
+    @Override
+    public void update(Institution institution) {
+        institutionRepository.save(institution);
     }
 }

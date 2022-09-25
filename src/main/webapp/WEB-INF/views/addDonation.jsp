@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
 <header class="header--form-page">
@@ -90,14 +90,16 @@
                 <h3>Zaznacz co chcesz oddać:</h3>
 
 
-                <div class="form-group form-group--checkbox">
+
+                    <div class="form-group">
 
                         <label>
-                            <form:checkboxes path="categories" items="${categories}"/>
-                            <span class="checkbox"></span>
-                            <span class="description"></span>
+                            <form:checkboxes path="categories"
+                                             items="${categories}" itemLabel="name" />
+
+
                         </label>
-                </div>
+                    </div>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -126,32 +128,17 @@
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="radio" name="organization" value="old"/>
-                        <span class="checkbox radio"></span>
-                        <span class="description">
-                  <div class="title">Fundacja “Bez domu”</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc dla osób nie posiadających miejsca
-                    zamieszkania
-                  </div>
-                </span>
-                    </label>
-                </div>
 
+                    <%--                <c:forEach items="${institutions}" var="institution">--%>
                 <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="radio" name="organization" value="old"/>
-                        <span class="checkbox radio"></span>
-                        <span class="description">
-                  <div class="title">Fundacja “Dla dzieci"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
-                  </div>
-                </span>
-                    </label>
+                    <form:select itemLabel="name" path="institution"
+                                 items="${institutions}"/>
+
+                    <c:forEach items="${institutions}" var="institution">
+                        <div class="title"> ${institution.name} </div>
+                        <div class="subtitle"> ${institution.description} </div>
+                        <br>
+                    </c:forEach>
                 </div>
 
                 <div class="form-group form-group--buttons">
@@ -168,22 +155,22 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <input type="text" name="address"/> </label>
+                            <label> Ulica   <form:input path="street" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <input type="text" name="city"/> </label>
+                            <label> Miasto  <form:input path="city"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <input type="text" name="postcode"/>
+                                Kod pocztowy   <form:input path="zipCode" />
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <input type="phone" name="phone"/>
+                                Numer telefonu <form:input type="number" path="phone"/>
                             </label>
                         </div>
                     </div>
@@ -191,17 +178,17 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <input type="date" name="data"/> </label>
+                            <label> Data   <form:input type="date" path="pickUpDate"/></label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <input type="time" name="time"/> </label>
+                            <label> Godzina   <form:input type="time" path="pickUpTime" /></label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <textarea name="more_info" rows="5"></textarea>
+                                <form:textarea path="pickUpComment"/>
                             </label>
                         </div>
                     </div>
@@ -268,6 +255,6 @@
 </section>
 
 <jsp:include page="footer.jsp"/>
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>

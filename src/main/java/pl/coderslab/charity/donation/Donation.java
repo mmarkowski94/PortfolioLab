@@ -27,6 +27,7 @@ public class Donation {
     @JoinColumn(name = "institution_id")
     private Institution institution;
     private String street;
+    private String phone;
     private String city;
     private String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

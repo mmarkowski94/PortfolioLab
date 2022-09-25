@@ -13,6 +13,11 @@ public class DonationServiceImpl implements DonationService {
     private final DonationRepository donationRepository;
 
     @Override
+    public void save(Donation donation) {
+        donationRepository.save(donation);
+    }
+
+    @Override
     public int countDonations() {
         return donationRepository.findAll().size();
     }

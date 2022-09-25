@@ -1446,6 +1446,10 @@ header nav ul li:last-of-type {
   text-align: right;
 }
 
+.col2{
+  text-align: left;
+}
+
 /* line 61, scss/modules/homepage-sections/_help.scss */
 .help--slides-items .col:after {
   content: "";
