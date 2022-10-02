@@ -23,8 +23,7 @@ public class Donation {
     private int quantity;
     @ManyToMany
     private List<Category> categories;
-    @OneToOne
-    @JoinColumn(name = "institution_id")
+    @ManyToOne
     private Institution institution;
     private String street;
     private String phone;

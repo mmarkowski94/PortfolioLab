@@ -163,7 +163,13 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
+      const userInput1 = document.querySelector('#userInput1').value
+      const outputUser1 = document.getElementById("outputUser1");
+
+
+      // const userInput3 = document.querySelector('#userInput3').value;
+      // const outputUser3 = document.getElementById("outputUser3");
+      // outputUser1.innerText = userInput3;
     }
 
   }
@@ -172,3 +178,5 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 });
+
+

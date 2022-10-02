@@ -91,7 +91,7 @@
 
 
 
-                    <div class="form-group">
+                    <div class="form-group" >
 
                         <label>
                             <form:checkboxes path="categories"
@@ -111,9 +111,9 @@
                 <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
 
                 <div class="form-group form-group--inline">
-                    <label>
+                    <label >
                         Liczba 60l worków:
-                        <form:input type="number" path="quantity" step="1" min="1"/>
+                        <form:input type="number" path="quantity" step="1" min="1" id="inputUser1"/>
                     </label>
                 </div>
 
@@ -155,7 +155,7 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica   <form:input path="street" /> </label>
+                            <label> Ulica   <form:input path="street" id ="userInput3" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -209,15 +209,14 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
-                                >
+                                <span class="summary--text" id=outputUser1">
+                                    4 worki ubrań w dobrym stanie dla dzieci</span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
+                                <span class="summary--text" >
+                                    Dla fundacji "Mam marzenie" w Warszawie</span
                                 >
                             </li>
                         </ul>
@@ -227,7 +226,7 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
+                                <li id ="userOutput3" >Prosta 51</li>
                                 <li>Warszawa</li>
                                 <li>99-098</li>
                                 <li>123 456 789</li>

@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -33,25 +35,33 @@ public class UserController {
         return "redirect:/user/login";
     }
 
-        @GetMapping("/login")
-        public String login() {
-            return "login";
-        }
 
-        @PostMapping("/login")
-        public String login(@RequestParam String email,
-                            @RequestParam String password,
-                            Model model) {
+    @GetMapping("/login")
+    public String login(Model model, HttpServletRequest request) {
+        model.addAttribute("user", new User());
+        HttpSession session = request.getSession();
+        return "login";
+    }
 
-            if (userService.existsByEmail(email)) {
-                User user = userService.findByEmail(email);
-                if (BCrypt.checkpw(password, user.getPassword())) {
-                    model.addAttribute("loggedUser", userService.findByEmail(email));
-                    return "redirect:/";
-                }
+    @PostMapping("/login")
+    public String login(@RequestParam("email") String email,
+                        @RequestParam("password") String password,
+                        HttpSession session) {
+        User user = userService.findByEmail(email);
+        if (user == null) {
+            return "redirect:/login";
+        } else {
+            if (BCrypt.checkpw(password, user.getPassword())) {
+
+                session.setAttribute("user", user);
             }
-            return "login";
+            if (session.getAttribute("user") != null) {
+
+                return "redirect:/";
+            } else {
+                return "redirect:/login";
+            }
         }
-    
+    }
 }
 

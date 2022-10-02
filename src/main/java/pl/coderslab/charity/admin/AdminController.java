@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.institution.Institution;
 import pl.coderslab.charity.institution.InstitutionService;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @Controller
@@ -54,6 +55,7 @@ public class AdminController {
     }
 
     @GetMapping("/institution/delete/{id}")
+    @Transactional
     public String deleteInstitution(@PathVariable long id) {
         institutionService.delete(id);
         return "redirect:/admin/institution/list";
