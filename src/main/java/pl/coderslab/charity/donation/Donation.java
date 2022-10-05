@@ -23,7 +23,7 @@ public class Donation {
     private int quantity;
     @ManyToMany
     private List<Category> categories;
-    @ManyToOne
+    @ManyToOne()
     private Institution institution;
     private String street;
     private String phone;

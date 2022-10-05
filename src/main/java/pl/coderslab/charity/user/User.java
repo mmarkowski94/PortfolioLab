@@ -22,5 +22,6 @@ public class User {
     @Email
     private String email;
     private String password;
+    private String role = "user";
 
 }

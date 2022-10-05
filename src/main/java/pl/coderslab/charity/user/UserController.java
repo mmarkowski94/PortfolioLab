@@ -30,7 +30,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "register";
         }
-        user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         userService.save(user);
         return "redirect:/user/login";
     }
@@ -50,18 +50,26 @@ public class UserController {
         User user = userService.findByEmail(email);
         if (user == null) {
             return "redirect:/login";
-        } else {
-            if (BCrypt.checkpw(password, user.getPassword())) {
-
-                session.setAttribute("user", user);
-            }
-            if (session.getAttribute("user") != null) {
-
-                return "redirect:/";
-            } else {
-                return "redirect:/login";
-            }
         }
+        if (BCrypt.checkpw(password, user.getPassword())) {
+
+            if (user.getRole().equals("admin")) {
+                session.setAttribute("admin", user);
+            }
+            session.setAttribute("user", user);
+        }
+
+        if (session.getAttribute("admin") != null) {
+            return "adminPanel";
+        }
+        if (session.getAttribute("user") != null) {
+            return "redirect:/";
+        }
+        return "redirect:/user/login";
+    }
+
+    @GetMapping("/403")
+    public String accessError() {
+        return "403";
     }
 }
-

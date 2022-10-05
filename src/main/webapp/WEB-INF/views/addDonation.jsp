@@ -113,7 +113,7 @@
                 <div class="form-group form-group--inline">
                     <label >
                         Liczba 60l worków:
-                        <form:input type="number" path="quantity" step="1" min="1" id="inputUser1"/>
+                        <form:input type="number" path="quantity" step="1" min="1" id="quantityInput"/>
                     </label>
                 </div>
 
@@ -131,8 +131,7 @@
 
                     <%--                <c:forEach items="${institutions}" var="institution">--%>
                 <div class="form-group form-group--checkbox">
-                    <form:select itemLabel="name" path="institution"
-                                 items="${institutions}"/>
+                    <form:select itemLabel="name" path="institution" items="${institutions}" id="institutionInput"/>
 
                     <c:forEach items="${institutions}" var="institution">
                         <div class="title"> ${institution.name} </div>
@@ -155,22 +154,22 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica   <form:input path="street" id ="userInput3" /> </label>
+                            <label> Ulica   <form:input id ="streetInput" path="street" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto  <form:input path="city"/> </label>
+                            <label> Miasto  <form:input id ="cityInput" path="city"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy   <form:input path="zipCode" />
+                                Kod pocztowy   <form:input id ="zipCodeInput" path="zipCode" />
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input type="number" path="phone"/>
+                                Numer telefonu <form:input id ="phoneInput" type="number" path="phone"/>
                             </label>
                         </div>
                     </div>
@@ -178,24 +177,24 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data   <form:input type="date" path="pickUpDate"/></label>
+                            <label> Data   <form:input id ="pickUpDateInput" type="date" path="pickUpDate"/></label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina   <form:input type="time" path="pickUpTime" /></label>
+                            <label> Godzina   <form:input id ="pickUpTimeInput" type="time" path="pickUpTime" /></label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea path="pickUpComment"/>
+                                <form:textarea id ="pickUpCommentInput" path="pickUpComment"/>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn next-step" id="buttonToSummary">Dalej</button>
                 </div>
             </div>
 
@@ -209,15 +208,12 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text" id=outputUser1">
-                                    4 worki ubrań w dobrym stanie dla dzieci</span>
+                                <span class="summary--text" id="quantityOutput"></span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text" >
-                                    Dla fundacji "Mam marzenie" w Warszawie</span
-                                >
+                                <span class="summary--text" id="institutionOutput"></span>
                             </li>
                         </ul>
                     </div>
@@ -226,19 +222,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li id ="userOutput3" >Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li id="streetOutput"> </li>
+                                <li id="cityOutput">Warszawa</li>
+                                <li id="zipCodeOutput">99-098</li>
+                                <li id="phoneOutput" >123 456 789</li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li id="pickUpDateOutput">13/12/2018</li>
+                                <li id="pickUpTimeOutput">15:40</li>
+                                <li id="pickUpCommentOutput">Brak uwag</li>
                             </ul>
                         </div>
                     </div>

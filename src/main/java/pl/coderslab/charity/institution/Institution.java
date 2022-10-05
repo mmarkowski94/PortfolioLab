@@ -18,4 +18,6 @@ public class Institution {
     private Long id;
     private String name;
     private String description;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy ="institution" )
+    private List<Donation> donations = new ArrayList<>();
 }
